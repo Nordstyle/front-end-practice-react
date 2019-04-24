@@ -5,4 +5,4 @@ const getJSON = url => fetch(url)
   })
   .then(r => r.json());
 
-export const getUsersData = () => getJSON('http://www.json-generator.com/api/json/get/cfltKrrdDS?indent=2');
+export const getUsersData = () => getJSON('http://www.json-generator.com/api/json/get/cdXpOkCkUi?indent=2');
