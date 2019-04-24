@@ -7,9 +7,7 @@ import UsersPage from './../../UsersPage';
 class Users extends React.Component {
   componentDidMount() {
     this.getData();
-    document.title = 'Users list';
   }
-
   getData() {
     this.props.fetchUserData();
   }

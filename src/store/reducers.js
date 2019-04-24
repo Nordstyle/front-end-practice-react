@@ -7,7 +7,6 @@ const initialState = {
 };
 
 export const usersReducer = (state = initialState, action) => {
-  console.log(state, action);
   switch (action.type) {
     case FETCH_USERDATA_REQUEST: return ({ isLoading: true, isError: false, data: [] });
     case FETCH_USERDATA_SUCCESS: return ({ isLoading: false, isError: false, data: action.payload });

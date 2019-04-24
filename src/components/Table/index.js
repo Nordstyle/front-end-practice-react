@@ -10,16 +10,15 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 const styles = {
   root: {
     width: '100%',
-    overflowX: 'auto',
+    overflowX: 'auto'
   },
   table: {
-    minWidth: 340,
+    minWidth: 340
   }
 };
 
 function TableGrid(props) {
   const { classes, usersData, isLoading } = props;
-  console.log(isLoading);
   if (isLoading) return <CircularProgress />;
   return (
     <Table className={classes.table}>
