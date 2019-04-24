@@ -5,16 +5,35 @@ import { fetchUserData } from "../../../store/actions";
 import UsersPage from './../../UsersPage';
 
 class Users extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      view: 'Free'
+    }
+  }
+
   componentDidMount() {
     this.getData();
   }
+
   getData() {
     this.props.fetchUserData();
   }
+
+  handlerCheckbox = (type) => {
+    this.setState({
+      view: type
+    })
+  }
+
   render() {
     const { isLoading, isError, usersData } = this.props;
+    const { view } = this.state;
     return (
-      <UsersPage usersData={ usersData } isLoading={isLoading} />
+      <UsersPage usersData={ usersData }
+                 isLoading={isLoading}
+                 handlerCheckbox={this.handlerCheckbox}
+                 view={view}/>
     )
   }
 }

@@ -15,11 +15,11 @@ const styles = {
 };
 
 function UsersPage(props) {
-  const { classes, usersData, isLoading } = props;
+  const { classes, usersData, isLoading, view, handlerCheckbox } = props;
   return (
     <Wrapper>
       <SidebarWrapper>
-        <CheckboxGroupView />
+        <CheckboxGroupView view={view} handlerCheckbox={handlerCheckbox} />
       </SidebarWrapper>
       <Content>
         <Paper className={classes.paper}>

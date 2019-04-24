@@ -15,16 +15,15 @@ const styles = {
 };
 
 function CheckboxGroupView(props) {
-  const { classes } = props;
+  const { classes, handlerCheckbox, view } = props;
   return (
     <FormControl component="fieldset">
       <FormLabel component="legend">View:</FormLabel>
       <RadioGroup aria-label="View"
                   name="View"
                   className={classes.radioGroup}
-                  // value={}
-                  //onChange={this.handleChange}
-        >
+                  value={view}
+                  onChange={(e, type) => handlerCheckbox(type)}>
         <FormControlLabel value="Free" control={<Radio color="primary" />} label="Free" />
         <FormControlLabel value="Group" control={<Radio color="primary" />} label="Group" />
       </RadioGroup>
