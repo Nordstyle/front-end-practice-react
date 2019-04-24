@@ -7,6 +7,9 @@ import './index.css';
 import store from './store';
 import App from './App';
 
+/* TODO: для быстрой отладки, удалить */
+window.store = store;
+
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
