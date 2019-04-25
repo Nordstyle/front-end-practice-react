@@ -23,8 +23,8 @@ function CheckboxGroupView(props) {
                   className={classes.radioGroup}
                   value={view}
                   onChange={(e, type) => handlerCheckbox(type)}>
-        <FormControlLabel value="Free" control={<Radio color="primary" />} label="Free" />
-        <FormControlLabel value="Group" control={<Radio color="primary" />} label="Group" />
+        <FormControlLabel value={''} control={<Radio color="primary" />} label="Free" />
+        <FormControlLabel value={'group'} control={<Radio color="primary" />} label="Group" />
       </RadioGroup>
     </FormControl>
   );

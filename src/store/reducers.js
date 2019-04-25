@@ -3,7 +3,7 @@ import { FETCH_USERDATA_REQUEST, FETCH_USERDATA_FAILED, FETCH_USERDATA_SUCCESS, 
 const initialState = {
   isLoading: undefined,
   isError: undefined,
-  view: 'Free',
+  view: '',
   sortNameType: null,
   sortDirection: null,
   data: []

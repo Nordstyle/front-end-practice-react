@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchUserData, userDataChangeView, userDataChangeSortType, userDataChangeSortDirection, userDataAddUser } from "../../../store/actions";
-import { getUserDataFilteredByDirection } from '../../../store/selectors'
+import { getUsersData } from '../../../store/selectors'
 
 import UsersPage from './../../UsersPage';
 
@@ -44,8 +44,8 @@ class Users extends React.Component {
   render() {
     const { isLoading, usersData, view, sortNameType, sortDirection } = this.props;
     return (
-      <UsersPage usersData={ usersData }
-                 isLoading={isLoading}
+    <UsersPage usersData={ usersData }
+    isLoading={isLoading}
                  handlerCheckbox={this.handlerCheckbox}
                  handlerSortByName={this.handlerSortByName}
                  handlerSortByDirection={this.handlerSortByDirection}
@@ -63,7 +63,7 @@ export default connect(
   store => ({
     isLoading: store.isLoading,
     isError: store.isError,
-    usersData: getUserDataFilteredByDirection(store),
+    usersData: getUsersData(store),
     view: store.view,
     sortNameType: store.sortNameType,
     sortDirection: store.sortDirection

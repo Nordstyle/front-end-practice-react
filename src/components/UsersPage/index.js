@@ -36,8 +36,8 @@ function UsersPage(props) {
                              handlerSortByName={handlerSortByName}
                              sortDirection={sortDirection}
                              handlerSortByDirection={handlerSortByDirection}/>
-          { view === 'Free' ? <TableGrid usersData={usersData} isLoading={isLoading} />
-            : usersData.map((user, idx) => <TableGrid key={idx} usersData={user} isLoading={isLoading} />) }
+          { view ? usersData.map((user, idx) => <TableGrid key={idx} usersData={user} isLoading={isLoading} />)
+            : <TableGrid usersData={usersData} isLoading={isLoading} /> }
         </Paper>
       </Content>
       { modalIsOpen ? <Modal handlerModalToggle={handlerModalToggle} modalIsOpen={modalIsOpen} handlerAddUser={handlerAddUser} /> : null }

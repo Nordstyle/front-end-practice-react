@@ -1,41 +1,33 @@
 import { createSelector } from 'reselect';
-import { userDataSortSign, userDataSortByName, userDataSortByDirection } from './../utils';
 
-const getUsersData = store => store.data;
+const getData = store => store.data;
 const getVisibilityFilter = store => store.view;
 const getSortNameType = store => store.sortNameType;
 const getSortDirection = store => store.sortDirection;
 
-export const getUserData = createSelector(
-  [getUsersData, getVisibilityFilter],
-  (usersData, visibilityFilter) => {
-    switch (visibilityFilter) {
-      case 'Free': return usersData;
-      case 'Group': return userDataSortSign(usersData);
-      default: return usersData;
+const sortByManyFields = (arr, keys) => {
+  return [...arr].sort((a,b) => {
+    for (let key of keys) {
+      const compared = a[key].localeCompare(b[key]);
+      if (compared !== 0 || keys.indexOf(key) === keys.length - 1) return compared;
     }
-  }
-);
+  })
+};
 
-export const getUserDataFilteredByName = createSelector(
-  [getUserData, getSortNameType, getVisibilityFilter],
-  (usersData, nameType, visibilityFilter) => {
-    switch (nameType) {
-      case 'firstName':
-      case 'surName':
-        return userDataSortByName(usersData, nameType, visibilityFilter);
-      default: return usersData;
-    }
-  }
-);
-
-export const getUserDataFilteredByDirection = createSelector(
-  [getUserDataFilteredByName, getSortDirection],
-  (usersData, sortDirection) => {
-    switch (sortDirection) {
-      case 'DESC': return userDataSortByDirection(usersData, sortDirection);
-      case 'ASC': return userDataSortByDirection(usersData, sortDirection);
-      default: return usersData;
-    }
+export const getUsersData = createSelector(
+  [getData, getSortDirection, getVisibilityFilter, getSortNameType],
+  (users,
+   direction,
+   sortByGroup,
+   key) => {
+    let sorted = sortByManyFields(users, [sortByGroup, key].filter(Boolean));
+    if (direction === 'DESC') sorted.reverse();
+    if (sortByGroup) return Object.values(sorted.reduce((a,c) => {
+      const group = c.group || 'other';
+      if (!a[group]) a[group] = [];
+      a[group].push(c);
+      return a;
+    }, {}));
+    return sorted;
   }
 );

@@ -16,6 +16,7 @@ const styles = {
 
 function TableGrid(props) {
   const { classes, usersData, isLoading } = props;
+  // console.log(usersData);
   if (isLoading) return <CircularProgress />;
   return (
     <Table className={classes.table}>
