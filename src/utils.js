@@ -13,6 +13,10 @@ const userObjToArr = obj => {
   return resultArr;
 };
 
+const sortByNameType = (data, type) => data.sort((a,b) => a[type].localeCompare(b[type]));
+
+const sortArrByName = (data, type) => data.map(item => sortByNameType(item, type));
+
 /***
  * Группируем данные пользователей по признаку
  * @param data {Array} - Массив пользователей
@@ -30,3 +34,13 @@ export const userDataSortSign = (data) => {
   return userObjToArr(prepareObject);
 };
 
+export const userDataSortByName = (data, type, filter) => {
+  let result = [];
+  if (!type) return data;
+  if (filter === 'Free') {
+    result = sortByNameType(data, type);
+  } else {
+    result = sortArrByName(data, type, filter);
+  }
+  return result;
+};
