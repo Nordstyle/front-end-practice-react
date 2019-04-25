@@ -1,4 +1,4 @@
-import { FETCH_USERDATA_REQUEST, FETCH_USERDATA_FAILED, FETCH_USERDATA_SUCCESS, USERDATA_CHANGE_VIEW, USERDATA_CHANGE_SORTING_TYPE } from './constants';
+import { FETCH_USERDATA_REQUEST, FETCH_USERDATA_FAILED, FETCH_USERDATA_SUCCESS, USERDATA_CHANGE_VIEW, USERDATA_CHANGE_SORTING_TYPE, USERDATA_CHANGE_SORTING_DIRECTION } from './constants';
 import { getUsersData } from './../api';
 
 export const fetchUserData = () => dispatch => {
@@ -19,4 +19,8 @@ export const userDataChangeView = view => dispatch => {
 
 export const userDataChangeSortType = type => dispatch => {
   dispatch({ type: USERDATA_CHANGE_SORTING_TYPE, payload: type })
+};
+
+export const userDataChangeSortDirection = type => dispatch => {
+  dispatch({ type: USERDATA_CHANGE_SORTING_DIRECTION, payload: type })
 };

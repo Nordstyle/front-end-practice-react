@@ -16,7 +16,7 @@ const styles = {
 };
 
 function UsersPage(props) {
-  const { classes, usersData, isLoading, view, handlerCheckbox, handlerSortToggleButtons, sortNameType } = props;
+  const { classes, usersData, isLoading, view, handlerCheckbox, handlerSortByName, sortNameType, handlerSortByDirection, sortDirection } = props;
   return (
     <Wrapper>
       <SidebarWrapper>
@@ -27,7 +27,10 @@ function UsersPage(props) {
           <Typography variant="h4" gutterBottom component="h2">
             Users list
           </Typography>
-          <SortToggleButtons sortNameType={sortNameType} handlerSortToggleButtons={handlerSortToggleButtons}  />
+          <SortToggleButtons sortNameType={sortNameType}
+                             handlerSortByName={handlerSortByName}
+                             sortDirection={sortDirection}
+                             handlerSortByDirection={handlerSortByDirection}/>
           { view === 'Free' ? <TableGrid usersData={usersData} isLoading={isLoading} />
             : usersData.map((user, idx) => <TableGrid key={idx} usersData={user} isLoading={isLoading} />) }
         </Paper>

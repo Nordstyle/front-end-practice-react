@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchUserData, userDataChangeView, userDataChangeSortType } from "../../../store/actions";
-import { getUserDataFilteredByName } from '../../../store/selectors'
+import { fetchUserData, userDataChangeView, userDataChangeSortType, userDataChangeSortDirection } from "../../../store/actions";
+import { getUserDataFilteredByDirection } from '../../../store/selectors'
 
 import UsersPage from './../../UsersPage';
 
@@ -18,19 +18,25 @@ class Users extends React.Component {
     this.props.userDataChangeView(type);
   };
 
-  handlerSortToggleButtons = (type) => {
+  handlerSortByName = (type) => {
     this.props.userDataChangeSortType(type);
   };
 
+  handlerSortByDirection = (type) => {
+    this.props.userDataChangeSortDirection(type);
+  };
+
   render() {
-    const { isLoading, usersData, view, sortNameType } = this.props;
+    const { isLoading, usersData, view, sortNameType, sortDirection } = this.props;
     return (
       <UsersPage usersData={ usersData }
                  isLoading={isLoading}
                  handlerCheckbox={this.handlerCheckbox}
-                 handlerSortToggleButtons={this.handlerSortToggleButtons}
+                 handlerSortByName={this.handlerSortByName}
+                 handlerSortByDirection={this.handlerSortByDirection}
                  view={view}
-                 sortNameType={sortNameType}/>
+                 sortNameType={sortNameType}
+                 sortDirection={sortDirection}/>
     )
   }
 }
@@ -39,9 +45,10 @@ export default connect(
   store => ({
     isLoading: store.isLoading,
     isError: store.isError,
-    usersData: getUserDataFilteredByName(store),
+    usersData: getUserDataFilteredByDirection(store),
     view: store.view,
-    sortNameType: store.sortNameType
+    sortNameType: store.sortNameType,
+    sortDirection: store.sortDirection
   }),
-  { fetchUserData, userDataChangeView, userDataChangeSortType }
+  { fetchUserData, userDataChangeView, userDataChangeSortType, userDataChangeSortDirection }
 )(Users);
