@@ -17,7 +17,7 @@ function Modal(props) {
     const surName = form.surName.value;
     const group = form.group.value;
     const age = form.age.value;
-    handlerAddUser({firstName, surName, group, age})
+    handlerAddUser({ _id:firstName, firstName, surName, group, age })
   };
 
   return (
