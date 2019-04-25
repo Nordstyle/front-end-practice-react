@@ -23,7 +23,6 @@ function TableGrid(props) {
         <TableRow>
           <TableCell>Name</TableCell>
           <TableCell align="right">Age</TableCell>
-          <TableCell align="right">Gender</TableCell>
           <TableCell align="right">Group</TableCell>
         </TableRow>
       </TableHead>
@@ -34,7 +33,6 @@ function TableGrid(props) {
               {item.firstName} {item.surName}
             </TableCell>
             <TableCell align="right">{item.age}</TableCell>
-            <TableCell align="right">{item.gender}</TableCell>
             <TableCell align="right">{item.group}</TableCell>
           </TableRow>
         ))}
