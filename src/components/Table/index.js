@@ -8,11 +8,8 @@ import TableRow from '@material-ui/core/TableRow';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 const styles = {
-  root: {
-    width: '100%',
-    overflowX: 'auto'
-  },
   table: {
+    minWidth: 300,
     marginBottom: '50px'
   }
 };

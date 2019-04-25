@@ -10,6 +10,8 @@ import SortToggleButtons from '../SortToggleButtons';
 import { Wrapper, SidebarWrapper, Content } from './styled';
 const styles = {
   paper: {
+    width: '100%',
+    overflowX: 'auto',
     padding: '20px',
     textAlign: 'center'
   }
