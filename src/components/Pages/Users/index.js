@@ -33,6 +33,7 @@ class Users extends React.Component {
   };
 
   handlerAddUser = (user) => {
+    this.setState({ modalIsOpen: false });
     this.props.userDataAddUser(user);
   };
 
