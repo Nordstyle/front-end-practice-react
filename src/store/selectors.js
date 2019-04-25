@@ -3,7 +3,7 @@ import { userDataSortSign, userDataSortByName } from './../utils';
 
 const getUsersData = store => store.data;
 const getVisibilityFilter = store => store.view;
-const getSortNameType = store => store.sortNameType ? store.sortNameType : 'reset';
+const getSortNameType = store => store.sortNameType;
 
 export const getUserData = createSelector(
   [getUsersData, getVisibilityFilter],
