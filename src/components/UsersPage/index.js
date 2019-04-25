@@ -6,6 +6,8 @@ import Paper from '@material-ui/core/Paper';
 import CheckboxGroupView from '../CheckboxGroupView';
 import TableGrid from '../Table';
 import SortToggleButtons from '../SortToggleButtons';
+import SimpleButton from '../Button';
+import Modal from '../Modal';
 
 import { Wrapper, SidebarWrapper, Content } from './styled';
 const styles = {
@@ -18,11 +20,12 @@ const styles = {
 };
 
 function UsersPage(props) {
-  const { classes, usersData, isLoading, view, handlerCheckbox, handlerSortByName, sortNameType, handlerSortByDirection, sortDirection } = props;
+  const { classes, usersData, isLoading, view, handlerCheckbox, handlerSortByName, sortNameType, handlerSortByDirection, sortDirection, handlerAddUser, handlerModalToggle, modalIsOpen } = props;
   return (
     <Wrapper>
       <SidebarWrapper>
         <CheckboxGroupView view={view} handlerCheckbox={handlerCheckbox} />
+        <SimpleButton caption='Add user' handlerModalToggle={handlerModalToggle}/>
       </SidebarWrapper>
       <Content>
         <Paper className={classes.paper}>
@@ -37,6 +40,7 @@ function UsersPage(props) {
             : usersData.map((user, idx) => <TableGrid key={idx} usersData={user} isLoading={isLoading} />) }
         </Paper>
       </Content>
+      { modalIsOpen ? <Modal handlerModalToggle={handlerModalToggle} modalIsOpen={modalIsOpen} handlerAddUser={handlerAddUser} /> : null }
     </Wrapper>
   );
 }

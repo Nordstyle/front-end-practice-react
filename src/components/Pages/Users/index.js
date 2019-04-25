@@ -1,11 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchUserData, userDataChangeView, userDataChangeSortType, userDataChangeSortDirection } from "../../../store/actions";
+import { fetchUserData, userDataChangeView, userDataChangeSortType, userDataChangeSortDirection, userDataAddUser } from "../../../store/actions";
 import { getUserDataFilteredByDirection } from '../../../store/selectors'
 
 import UsersPage from './../../UsersPage';
 
 class Users extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      modalIsOpen: false
+    }
+  }
   componentDidMount() {
     this.getData();
   }
@@ -26,6 +32,14 @@ class Users extends React.Component {
     this.props.userDataChangeSortDirection(type);
   };
 
+  handlerAddUser = (user) => {
+    this.props.userDataAddUser(user);
+  };
+
+  handlerModalToggle = (value) => {
+    this.setState({ modalIsOpen: value })
+  };
+
   render() {
     const { isLoading, usersData, view, sortNameType, sortDirection } = this.props;
     return (
@@ -34,9 +48,12 @@ class Users extends React.Component {
                  handlerCheckbox={this.handlerCheckbox}
                  handlerSortByName={this.handlerSortByName}
                  handlerSortByDirection={this.handlerSortByDirection}
+                 handlerModalToggle={this.handlerModalToggle}
+                 handlerAddUser={this.handlerAddUser}
                  view={view}
                  sortNameType={sortNameType}
-                 sortDirection={sortDirection}/>
+                 sortDirection={sortDirection}
+                 modalIsOpen={this.state.modalIsOpen}/>
     )
   }
 }
@@ -50,5 +67,5 @@ export default connect(
     sortNameType: store.sortNameType,
     sortDirection: store.sortDirection
   }),
-  { fetchUserData, userDataChangeView, userDataChangeSortType, userDataChangeSortDirection }
+  { fetchUserData, userDataChangeView, userDataChangeSortType, userDataChangeSortDirection, userDataAddUser }
 )(Users);

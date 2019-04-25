@@ -1,4 +1,4 @@
-import { FETCH_USERDATA_REQUEST, FETCH_USERDATA_FAILED, FETCH_USERDATA_SUCCESS, USERDATA_CHANGE_VIEW, USERDATA_CHANGE_SORTING_TYPE, USERDATA_CHANGE_SORTING_DIRECTION } from './constants';
+import { FETCH_USERDATA_REQUEST, FETCH_USERDATA_FAILED, FETCH_USERDATA_SUCCESS, USERDATA_CHANGE_VIEW, USERDATA_CHANGE_SORTING_TYPE, USERDATA_CHANGE_SORTING_DIRECTION, USERDATA_ADD_USER } from './constants';
 
 const initialState = {
   isLoading: undefined,
@@ -17,6 +17,7 @@ export const usersReducer = (state = initialState, action) => {
     case USERDATA_CHANGE_VIEW: return ({ ...state, view: action.payload });
     case USERDATA_CHANGE_SORTING_TYPE: return ({ ...state, sortNameType: action.payload });
     case USERDATA_CHANGE_SORTING_DIRECTION: return ({ ...state, sortDirection: action.payload });
+    case USERDATA_ADD_USER: return ({ ...state, data: [...state.data, action.payload ]});
     default: return state;
   }
 };
