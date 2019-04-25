@@ -26,7 +26,8 @@ function UsersPage(props) {
           <Typography variant="h4" gutterBottom component="h2">
             Users list
           </Typography>
-          <TableGrid usersData={usersData} isLoading={isLoading} />
+          { view === 'Free' ? <TableGrid usersData={usersData} isLoading={isLoading} />
+            : usersData.map((user, idx) => <TableGrid key={idx} usersData={user} isLoading={isLoading} />) }
         </Paper>
       </Content>
     </Wrapper>

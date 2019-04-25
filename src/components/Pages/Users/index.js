@@ -1,17 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchUserData } from "../../../store/actions";
+import { fetchUserData, userDataChangeView } from "../../../store/actions";
+import { getUserData } from '../../../store/selectors'
 
 import UsersPage from './../../UsersPage';
 
 class Users extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      view: 'Free'
-    }
-  }
-
   componentDidMount() {
     this.getData();
   }
@@ -21,14 +15,11 @@ class Users extends React.Component {
   }
 
   handlerCheckbox = (type) => {
-    this.setState({
-      view: type
-    })
-  }
+    this.props.userDataChangeView(type);
+  };
 
   render() {
-    const { isLoading, isError, usersData } = this.props;
-    const { view } = this.state;
+    const { isLoading, usersData, view } = this.props;
     return (
       <UsersPage usersData={ usersData }
                  isLoading={isLoading}
@@ -39,6 +30,6 @@ class Users extends React.Component {
 }
 
 export default connect(
-  store => ({ isLoading: store.isLoading, isError: store.isError, usersData: store.data }),
-  { fetchUserData }
+  store => ({ isLoading: store.isLoading, isError: store.isError, usersData: getUserData(store), view: store.view }),
+  { fetchUserData, userDataChangeView }
 )(Users);

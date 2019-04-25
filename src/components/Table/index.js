@@ -13,7 +13,7 @@ const styles = {
     overflowX: 'auto'
   },
   table: {
-    minWidth: 340
+    marginBottom: '50px'
   }
 };
 
