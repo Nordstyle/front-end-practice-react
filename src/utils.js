@@ -3,15 +3,7 @@
  * @param obj
  * @returns {Array}
  */
-const userObjToArr = obj => {
-  let resultArr = [];
-  for (const key in obj) {
-    if (obj.hasOwnProperty(key)) {
-      resultArr = [...resultArr, obj[key]]
-    }
-  }
-  return resultArr;
-};
+const userObjToArr = obj => Object.values(obj);
 
 const sortByNameType = (data, type) => data.sort((a,b) => a[type].localeCompare(b[type]));
 const sortByDirection = (data) => data.reverse();
