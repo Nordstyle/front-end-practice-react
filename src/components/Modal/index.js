@@ -44,7 +44,6 @@ function Modal(props) {
             fullWidth
           />
           <TextField
-            autoFocus
             margin="dense"
             id="age"
             label="Age"
