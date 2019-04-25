@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchUserData, userDataChangeView } from "../../../store/actions";
-import { getUserData } from '../../../store/selectors'
+import { fetchUserData, userDataChangeView, userDataChangeSortType } from "../../../store/actions";
+import { getUserDataFilteredByName } from '../../../store/selectors'
 
 import UsersPage from './../../UsersPage';
 
@@ -18,18 +18,30 @@ class Users extends React.Component {
     this.props.userDataChangeView(type);
   };
 
+  handlerSortToggleButtons = (type) => {
+    this.props.userDataChangeSortType(type);
+  };
+
   render() {
-    const { isLoading, usersData, view } = this.props;
+    const { isLoading, usersData, view, sortNameType } = this.props;
     return (
       <UsersPage usersData={ usersData }
                  isLoading={isLoading}
                  handlerCheckbox={this.handlerCheckbox}
-                 view={view}/>
+                 handlerSortToggleButtons={this.handlerSortToggleButtons}
+                 view={view}
+                 sortNameType={sortNameType}/>
     )
   }
 }
 
 export default connect(
-  store => ({ isLoading: store.isLoading, isError: store.isError, usersData: getUserData(store), view: store.view }),
-  { fetchUserData, userDataChangeView }
+  store => ({
+    isLoading: store.isLoading,
+    isError: store.isError,
+    usersData: getUserDataFilteredByName(store),
+    view: store.view,
+    sortNameType: store.sortNameType
+  }),
+  { fetchUserData, userDataChangeView, userDataChangeSortType }
 )(Users);

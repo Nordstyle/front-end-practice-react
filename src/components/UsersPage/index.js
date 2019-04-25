@@ -5,6 +5,7 @@ import Paper from '@material-ui/core/Paper';
 
 import CheckboxGroupView from '../CheckboxGroupView';
 import TableGrid from '../Table';
+import SortToggleButtons from '../SortToggleButtons';
 
 import { Wrapper, SidebarWrapper, Content } from './styled';
 const styles = {
@@ -15,7 +16,7 @@ const styles = {
 };
 
 function UsersPage(props) {
-  const { classes, usersData, isLoading, view, handlerCheckbox } = props;
+  const { classes, usersData, isLoading, view, handlerCheckbox, handlerSortToggleButtons, sortNameType } = props;
   return (
     <Wrapper>
       <SidebarWrapper>
@@ -26,6 +27,7 @@ function UsersPage(props) {
           <Typography variant="h4" gutterBottom component="h2">
             Users list
           </Typography>
+          <SortToggleButtons sortNameType={sortNameType} handlerSortToggleButtons={handlerSortToggleButtons}  />
           { view === 'Free' ? <TableGrid usersData={usersData} isLoading={isLoading} />
             : usersData.map((user, idx) => <TableGrid key={idx} usersData={user} isLoading={isLoading} />) }
         </Paper>
